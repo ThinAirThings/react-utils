@@ -11,6 +11,7 @@ export const useRerender = (): () => void => {
     return update;
 }
 
+
 export const useLiveRef = <T>(state: T) => {
     const ref = useRef(state);
     ref.current = state;
