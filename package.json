@@ -2,8 +2,8 @@
   "name": "@thinairthings/react-utils",
   "description": "Basic react utility functions",
   "version": "1.0.2",
-  "main": "dist/react-utils/src/index.js",
-  "types": "dist/react-utils/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/ThinAirThings/react-utils.git"
