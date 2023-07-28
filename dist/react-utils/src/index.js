@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useNodeSignal = exports.sendNodeSignal = exports.useLiveRef = exports.useRerender = void 0;
+exports.useRxNodeSignal = exports.txNodeSignal = exports.useLiveRef = exports.useRerender = void 0;
 const react_1 = require("react");
 const rxjs_1 = require("rxjs");
 const txRx_1 = require("../../shared/txRx");
@@ -19,13 +19,13 @@ const useLiveRef = (state) => {
     return ref;
 };
 exports.useLiveRef = useLiveRef;
-const sendNodeSignal = (env, targetNodeId, action, payload) => {
+const txNodeSignal = (env, targetNodeId, action, payload) => {
     (env === "main" ? window : self).dispatchEvent(new CustomEvent(`${targetNodeId}:${action}`, {
         detail: payload,
     }));
 };
-exports.sendNodeSignal = sendNodeSignal;
-const useNodeSignal = (env, nodeId, action, callback) => {
+exports.txNodeSignal = txNodeSignal;
+const useRxNodeSignal = (env, nodeId, action, callback) => {
     (0, react_1.useEffect)(() => {
         const subscription = (0, rxjs_1.fromEvent)((env === "main" ? window : self), `${nodeId}:${(0, txRx_1.rxToTx)(action)}`)
             .subscribe((messageEvent) => {
@@ -36,4 +36,4 @@ const useNodeSignal = (env, nodeId, action, callback) => {
         };
     }, []);
 };
-exports.useNodeSignal = useNodeSignal;
+exports.useRxNodeSignal = useRxNodeSignal;

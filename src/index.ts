@@ -19,7 +19,7 @@ export const useLiveRef = <T>(state: T) => {
     return ref;
 }
 
-export const sendNodeSignal = (
+export const txNodeSignal = (
     env: 'main' | 'worker',
     targetNodeId: string,
     action: string,
@@ -30,7 +30,7 @@ export const sendNodeSignal = (
         detail: payload,
     }))
 }
-export const useNodeSignal = <T,>(
+export const useRxNodeSignal = <T,>(
     env: 'main' | 'worker',
     nodeId: string, 
     action: string, 
