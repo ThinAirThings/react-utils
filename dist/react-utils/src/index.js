@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useRxNodeSignal = exports.txNodeSignal = exports.useLiveRef = exports.useRerender = void 0;
+exports.useRxNodeSignal = exports.txNodeSignal = exports.useSequenceRef = exports.useLiveRef = exports.useRerender = void 0;
 const react_1 = require("react");
 const rxjs_1 = require("rxjs");
 const txRx_1 = require("../../shared/txRx");
@@ -19,6 +19,17 @@ const useLiveRef = (state) => {
     return ref;
 };
 exports.useLiveRef = useLiveRef;
+const useSequenceRef = (val) => {
+    const [refState, setRefState] = (0, react_1.useState)(val);
+    const ref = (0, react_1.useRef)(val);
+    ref.current = refState;
+    const setRef = (newVal) => {
+        setRefState(newVal);
+        ref.current = newVal;
+    };
+    return [ref, setRef, refState];
+};
+exports.useSequenceRef = useSequenceRef;
 const txNodeSignal = (env, targetNodeId, action, payload) => {
     (env === "main" ? window : self).dispatchEvent(new CustomEvent(`${targetNodeId}:${action}`, {
         detail: payload,

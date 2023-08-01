@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { fromEvent } from "rxjs";
 import { rxToTx } from "../../shared/txRx"
 export const useRerender = (): () => void => {
@@ -17,6 +17,17 @@ export const useLiveRef = <T>(state: T) => {
     const ref = useRef(state);
     ref.current = state;
     return ref;
+}
+
+export const useSequenceRef = <T>(val: T) => {
+    const [refState, setRefState] = useState(val);
+    const ref = useRef(val);
+    ref.current = refState;
+    const setRef = (newVal: T) => {
+        setRefState(newVal);
+        ref.current = newVal;
+    }
+    return [ref, setRef, refState] as const;
 }
 
 export const txNodeSignal = (
