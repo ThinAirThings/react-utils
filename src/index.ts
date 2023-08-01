@@ -19,7 +19,7 @@ export const useLiveRef = <T>(state: T) => {
     return ref;
 }
 
-export const useSequenceRef = <T>(val: T) => {
+export const useStateRef = <T>(val: T) => {
     const [refState, setRefState] = useState(val);
     const ref = useRef(val);
     ref.current = refState;
