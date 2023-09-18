@@ -1,7 +1,7 @@
 {
     "name": "@thinairthings/react-utils",
     "description": "Basic react utility functions",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "types": "dist/index.d.ts",
     "type": "module",
     "exports": {
