@@ -1,6 +1,7 @@
+import { rxToTx } from "@thinairthings/txrx";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { fromEvent } from "rxjs";
-import { rxToTx } from "../../shared/txRx"
+
 export const useRerender = (): () => void => {
     const [, update] = useReducer(
         // This implementation works by incrementing a hidden counter value that is
@@ -12,14 +13,20 @@ export const useRerender = (): () => void => {
     return update;
 }
 
+export const useRenderedRef = <T>() => {
+    const rerender = useRerender()
+    const elementRef = useRef<T>(null)
+    useEffect(() => rerender(), [])
+    return elementRef
+}
 
-export const useLiveRef = <T>(state: T) => {
+export const useLiveRef = <T,>(state: T) => {
     const ref = useRef(state);
     ref.current = state;
     return ref;
 }
 
-export const useStateRef = <T>(val: T) => {
+export const useStateRef = <T,>(val: T) => {
     const [refState, setRefState] = useState(val);
     const ref = useRef(val);
     ref.current = refState;
@@ -57,3 +64,5 @@ export const useRxNodeSignal = <T,>(
         }
     }, [])
 }
+
+export * from './components/ContextWrapper.js'
