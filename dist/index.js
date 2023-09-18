@@ -9872,7 +9872,7 @@ var ContextWrapper = ({
   ContextArray,
   children
 }) => {
-  return /* @__PURE__ */ jsx(Fragment, { children: ContextArray.reduce((acc, ProviderComponent) => {
+  return /* @__PURE__ */ jsx(Fragment, { children: ContextArray.reduceRight((acc, ProviderComponent) => {
     return /* @__PURE__ */ jsx(ProviderComponent, { children: acc });
   }, /* @__PURE__ */ jsx(Fragment, { children })) });
 };

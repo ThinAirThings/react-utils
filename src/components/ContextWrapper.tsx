@@ -8,9 +8,8 @@ export const ContextWrapper: FC<{
     children,
 }) => {
     return <>
-        {ContextArray.reduce((acc, ProviderComponent) => {
+        {ContextArray.reduceRight((acc, ProviderComponent) => {
             return <ProviderComponent>{acc}</ProviderComponent>
-
         }, <>{children}</>)}
     </>
 }

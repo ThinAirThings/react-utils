@@ -9889,7 +9889,7 @@ var ContextWrapper = ({
   ContextArray,
   children
 }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: ContextArray.reduce((acc, ProviderComponent) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: ContextArray.reduceRight((acc, ProviderComponent) => {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProviderComponent, { children: acc });
   }, /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children })) });
 };
