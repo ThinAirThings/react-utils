@@ -9872,12 +9872,9 @@ var ContextWrapper = ({
   ContextArray,
   children
 }) => {
-  const ContextComposition = ({ children: children2 }) => {
-    return /* @__PURE__ */ jsx(Fragment, { children: ContextArray.reduce((acc, { props, Context }, index) => {
-      return /* @__PURE__ */ jsx(Context.Provider, { value: props, children: index === 0 ? children2 : acc });
-    }, /* @__PURE__ */ jsx(Fragment, {})) });
-  };
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(ContextComposition, { children }) });
+  return /* @__PURE__ */ jsx(Fragment, { children: ContextArray.reduce((acc, ProviderComponent) => {
+    return /* @__PURE__ */ jsx(ProviderComponent, { children: acc });
+  }, /* @__PURE__ */ jsx(Fragment, { children })) });
 };
 
 // src/index.ts

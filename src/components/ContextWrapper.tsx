@@ -1,28 +1,16 @@
-import { Context, FC, ReactNode } from "react"
-
+import { FC, ReactNode } from "react"
 
 export const ContextWrapper: FC<{
-    ContextArray: Array<{
-        props: Record<string, any>,
-        Context: Context<any>,
-    }>
+    ContextArray: Array<FC<{children: ReactNode}>>
     children: ReactNode
 }> = ({
     ContextArray,
     children,
 }) => {
-    const ContextComposition = ({children}: {children: ReactNode}) => {
-        return <>
-            {ContextArray.reduce((acc, { props, Context }, index) => {
-                return <Context.Provider value={props}>
-                    {index === 0 ? children : acc}
-                </Context.Provider>
-            }, <></>)}
-        </>
-    } 
     return <>
-        <ContextComposition>
-            {children}
-        </ContextComposition>
+        {ContextArray.reduce((acc, ProviderComponent) => {
+            return <ProviderComponent>{acc}</ProviderComponent>
+
+        }, <>{children}</>)}
     </>
 }

@@ -9889,12 +9889,9 @@ var ContextWrapper = ({
   ContextArray,
   children
 }) => {
-  const ContextComposition = ({ children: children2 }) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: ContextArray.reduce((acc, { props, Context }, index) => {
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Context.Provider, { value: props, children: index === 0 ? children2 : acc });
-    }, /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, {})) });
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ContextComposition, { children }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: ContextArray.reduce((acc, ProviderComponent) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProviderComponent, { children: acc });
+  }, /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children })) });
 };
 
 // src/index.ts

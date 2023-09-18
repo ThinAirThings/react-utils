@@ -1,11 +1,10 @@
 import * as react from 'react';
-import { FC, Context, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 declare const ContextWrapper: FC<{
-    ContextArray: Array<{
-        props: Record<string, any>;
-        Context: Context<any>;
-    }>;
+    ContextArray: Array<FC<{
+        children: ReactNode;
+    }>>;
     children: ReactNode;
 }>;
 
