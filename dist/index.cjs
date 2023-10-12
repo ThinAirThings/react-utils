@@ -9869,6 +9869,7 @@ var require_cjs = __commonJS({
 var src_exports = {};
 __export(src_exports, {
   ContextWrapper: () => ContextWrapper,
+  createRootDivPortal: () => createRootDivPortal,
   txNodeSignal: () => txNodeSignal,
   useLiveRef: () => useLiveRef,
   useRenderedRef: () => useRenderedRef,
@@ -9881,6 +9882,7 @@ init_cjs_shims();
 var import_txrx = require("@thinairthings/txrx");
 var import_react = require("react");
 var import_rxjs = __toESM(require_cjs(), 1);
+var import_react_dom = require("react-dom");
 
 // src/components/ContextWrapper.tsx
 init_cjs_shims();
@@ -9941,9 +9943,14 @@ var useRxNodeSignal = (env, nodeId, action, callback) => {
     };
   }, []);
 };
+var createRootDivPortal = (Component) => (0, import_react_dom.createPortal)(
+  Component,
+  document.getElementById("root")
+);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ContextWrapper,
+  createRootDivPortal,
   txNodeSignal,
   useLiveRef,
   useRenderedRef,

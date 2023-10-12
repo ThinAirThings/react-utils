@@ -9864,6 +9864,7 @@ init_esm_shims();
 var import_rxjs = __toESM(require_cjs(), 1);
 import { rxToTx } from "@thinairthings/txrx";
 import { useEffect, useReducer, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 // src/components/ContextWrapper.tsx
 init_esm_shims();
@@ -9924,8 +9925,13 @@ var useRxNodeSignal = (env, nodeId, action, callback) => {
     };
   }, []);
 };
+var createRootDivPortal = (Component) => createPortal(
+  Component,
+  document.getElementById("root")
+);
 export {
   ContextWrapper,
+  createRootDivPortal,
   txNodeSignal,
   useLiveRef,
   useRenderedRef,

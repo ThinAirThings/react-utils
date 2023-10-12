@@ -1,7 +1,7 @@
 import { rxToTx } from "@thinairthings/txrx";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { ReactNode, useEffect, useReducer, useRef, useState } from "react";
 import { fromEvent } from "rxjs";
-
+import { createPortal } from "react-dom"
 export const useRerender = (): () => void => {
     const [, update] = useReducer(
         // This implementation works by incrementing a hidden counter value that is
@@ -64,5 +64,10 @@ export const useRxNodeSignal = <T,>(
         }
     }, [])
 }
+
+export const createRootDivPortal = (Component: ReactNode) => createPortal(
+    Component,
+    document.getElementById("root")!
+)
 
 export * from './components/ContextWrapper.js'
